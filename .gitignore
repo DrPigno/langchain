@@ -66,3 +66,6 @@ models/
 *.langgraph_checkpoint.*.pckl
 *.langgraph_ops.pckl
 *.langgraph_retry_counter.pckl
+
+# Cartella prove personali (non pubblica)
+prove/
