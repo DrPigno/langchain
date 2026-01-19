@@ -14,7 +14,7 @@ Benvenuti al corso pratico su LangChain! Questo repository contiene tutte le lez
 ### 1. Clona il repository
 
 ```bash
-git clone <URL_DEL_TUO_REPOSITORY>
+git clone https://github.com/DrPigno/langchain
 cd LangChain_1
 ```
 
