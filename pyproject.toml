@@ -1,0 +1,36 @@
+[project]
+name = "langchain-corso"
+version = "0.1.0"
+description = "Corso pratico su LangChain con esempi e lezioni interattive"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-core>=0.3.0",
+    "langgraph>=0.2.0",
+    "langgraph-checkpoint>=2.0.0",
+    "pydantic>=2.0.0",
+    "jupyter>=1.1.1",
+    "ipykernel>=6.29.0",
+    "python-dotenv>=1.0.0",
+    "requests>=2.32.0",
+    "pypdf>=6.6.0",
+    "faiss-cpu>=1.13.2",
+    "langchain-text-splitters>=1.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0.0",
+    "ruff>=0.6.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

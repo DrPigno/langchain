@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosistemi Agenti AI & TinyML 2026</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --card-bg: #0f172a;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --accent-emerald: #10b981;
+            --accent-amber: #f59e0b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f8fafc;
+        }
+
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="max-w-7xl mx-auto px-4 pt-12 pb-20">
+        
+        <!-- HEADER SECTION -->
+        <header class="mb-16 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6 leading-tight">
+                L'Evoluzione degli <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Agenti AI</span>
+            </h1>
+            <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
+                Nel 2026, la scelta dell'ecosistema non è più solo una questione di "modello", ma di dove risiede l'intelligenza. 
+                Esploriamo la triade tra soluzioni gestite, piattaforme di orchestrazione e framework a basso livello.
+            </p>
+        </header>
+
+        <!-- SECTION 1: LANDSCAPE GRID -->
+        <section id="landscape" class="mb-20">
+            <div class="mb-8 border-l-4 border-blue-500 pl-4">
+                <h2 class="text-2xl font-display font-bold">Classificazione Ecosistemi</h2>
+                <p class="text-slate-400">Tre approcci distinti per diverse esigenze di governance e velocità.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Enterprise Card -->
+                <div class="glass-card p-8 rounded-3xl border-t-4 border-blue-500 hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-blue-500/10 rounded-2xl text-blue-400"><i class="fas fa-building text-2xl"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl">Enterprise</h3>
+                            <span class="text-[10px] text-blue-500 font-mono tracking-widest uppercase">Managed SaaS</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6">Soluzioni "No-Ops" integrate in ecosistemi cloud esistenti. Massima sicurezza, minimo controllo granulare.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-robot text-blue-400"></i>
+                            <span class="text-sm font-semibold">OpenAI Agent Builder</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-cloud text-blue-400"></i>
+                            <span class="text-sm font-semibold">Microsoft Copilot Studio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Independent Card -->
+                <div class="glass-card p-8 rounded-3xl border-t-4 border-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-purple-500/10 rounded-2xl text-purple-400"><i class="fas fa-vial text-2xl"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl">Indipendenti</h3>
+                            <span class="text-[10px] text-purple-500 font-mono tracking-widest uppercase">Low-Code / Agnostic</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6">Piattaforme che orchestrano modelli multipli (OpenAI, Anthropic, Llama) con interfacce visuali.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-project-diagram text-purple-400"></i>
+                            <span class="text-sm font-semibold">Dify.ai</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-infinity text-purple-400"></i>
+                            <span class="text-sm font-semibold">n8n (Nodes)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Framework Card -->
+                <div class="glass-card p-8 rounded-3xl border-t-4 border-emerald-500 hover:shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="p-3 bg-emerald-500/10 rounded-2xl text-emerald-400"><i class="fas fa-code text-2xl"></i></div>
+                        <div>
+                            <h3 class="font-bold text-xl">Framework</h3>
+                            <span class="text-[10px] text-emerald-500 font-mono tracking-widest uppercase">Open Source / Pro-Code</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mb-6">Librerie per sviluppatori che richiedono controllo totale su memoria, strumenti e cicli di ragionamento.</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-link text-emerald-400"></i>
+                            <span class="text-sm font-semibold">LangChain / LangGraph</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-slate-800/50 p-3 rounded-xl border border-slate-700">
+                            <i class="fas fa-users-gear text-emerald-400"></i>
+                            <span class="text-sm font-semibold">CrewAI / AutoGen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: TINYML & EDGE -->
+        <section id="tinyml" class="mb-20">
+            <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[3rem] p-10 border border-slate-700 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-10 opacity-10">
+                    <i class="fas fa-microchip text-[120px] text-amber-500"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-display font-bold mb-8 flex items-center gap-3">
+                        <span class="w-12 h-1 bg-amber-500"></span> 
+                        Il Ruolo del TinyML & Edge
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <p class="text-slate-300 leading-relaxed">
+                                L'integrazione hardware è la nuova frontiera. Mentre le soluzioni Enterprise sono vincolate al cloud, i **Framework Open Source** consentono logiche decisionali direttamente su gateway industriali via TinyML.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="p-4 bg-slate-950/50 rounded-2xl border border-amber-500/20">
+                                    <h4 class="text-amber-500 font-bold mb-1 text-sm">Esecuzione Locale</h4>
+                                    <p class="text-[10px] text-slate-400 uppercase tracking-tighter">Latenza < 10ms</p>
+                                </div>
+                                <div class="p-4 bg-slate-950/50 rounded-2xl border border-amber-500/20">
+                                    <h4 class="text-amber-500 font-bold mb-1 text-sm">Privacy Nativa</h4>
+                                    <p class="text-[10px] text-slate-400 uppercase tracking-tighter">Dati Offline</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Process Flow Visual -->
+                        <div class="flex flex-col gap-4">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase">Flusso di Lavoro Ibrido 2026</h4>
+                            <div class="flex flex-col gap-2">
+                                <div class="flex items-center gap-4 bg-blue-500/20 p-4 rounded-xl border border-blue-500/30">
+                                    <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white">1</div>
+                                    <span class="text-sm font-semibold">Cloud Agent (OpenAI)</span>
+                                </div>
+                                <div class="flex justify-center py-1"><i class="fas fa-chevron-down text-slate-700"></i></div>
+                                <div class="flex items-center gap-4 bg-purple-500/20 p-4 rounded-xl border border-purple-500/30">
+                                    <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-xs font-bold text-white">2</div>
+                                    <span class="text-sm font-semibold">Gateway (Dify/n8n)</span>
+                                </div>
+                                <div class="flex justify-center py-1"><i class="fas fa-chevron-down text-slate-700"></i></div>
+                                <div class="flex items-center gap-4 bg-emerald-500/20 p-4 rounded-xl border border-emerald-500/30">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-xs font-bold text-white">3</div>
+                                    <span class="text-sm font-semibold">Edge Micro-Agent (LangGraph)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: ANALYTICS -->
+        <section id="analytics" class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+            <!-- Radar Chart -->
+            <div class="glass-card p-8 rounded-[2.5rem]">
+                <h3 class="text-xl font-display font-bold mb-6">Capacità Architetturali</h3>
+                <p class="text-xs text-slate-400 mb-6">Confronto tra deployment facilitato e flessibilità di integrazione hardware.</p>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="glass-card p-8 rounded-[2.5rem]">
+                <h3 class="text-xl font-display font-bold mb-6">Benchmark Latenza (ms)</h3>
+                <p class="text-xs text-slate-400 mb-6">Tempo di risposta per task critici eseguiti in Cloud vs Edge Locale.</p>
+                <div class="chart-container">
+                    <canvas id="latencyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-900 py-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <p class="text-slate-500 text-sm">Analisi Tecnica Ecosistemi AI 2026.</p>
+            <div class="mt-4 flex justify-center gap-6 text-slate-800">
+                <i class="fab fa-github"></i>
+                <i class="fab fa-linkedin"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const radarLabels = [
+            'Integrazione Cloud', 
+            'Controllo Codice', 
+            ['Capacità Edge', '& TinyML'], 
+            'Prototipazione Rapida', 
+            'Sicurezza Managed'
+        ];
+
+        // Charts initialization
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [
+                    {
+                        label: 'OpenAI (Enterprise)',
+                        data: [95, 20, 10, 85, 90],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        pointBackgroundColor: '#3b82f6'
+                    },
+                    {
+                        label: 'Dify / n8n',
+                        data: [70, 60, 50, 95, 60],
+                        borderColor: '#a855f7',
+                        backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                        pointBackgroundColor: '#a855f7'
+                    },
+                    {
+                        label: 'LangChain / CrewAI',
+                        data: [50, 98, 95, 40, 75],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        pointBackgroundColor: '#10b981'
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { color: '#94a3b8', font: { size: 10 } },
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+
+        const latencyCtx = document.getElementById('latencyChart').getContext('2d');
+        new Chart(latencyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Enterprise (Cloud)', 'Indipendente (Hybrid)', 'Framework (Edge)'],
+                datasets: [{
+                    label: 'Latenza (ms)',
+                    data: [620, 310, 48],
+                    backgroundColor: ['rgba(59, 130, 246, 0.6)', 'rgba(168, 85, 247, 0.6)', 'rgba(16, 185, 129, 0.6)'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#64748b' } },
+                    y: { grid: { display: false }, ticks: { color: '#f8fafc' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

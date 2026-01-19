@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot vs Agenti vs Orchestrazione</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #020617;
+            --card-bg: #0f172a;
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+            --accent-emerald: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #f1f5f9;
+        }
+
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .level-line {
+            position: relative;
+        }
+        .level-line::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            width: 2px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+
+    <main class="max-w-6xl mx-auto space-y-12">
+        
+        <!-- HEADER -->
+        <header class="text-center space-y-4">
+            <h1 class="text-4xl md:text-5xl font-display font-bold">
+                La Piramide dell'IA <span class="text-blue-500">2026</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto">
+                Comprendere il passaggio fondamentale dal semplice dialogo (Chatbot) all'esecuzione autonoma (Agenti) fino alla gestione di ecosistemi (Orchestrazione).
+            </p>
+        </header>
+
+        <!-- COMPARISON GRID -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- LEVEL 1: CHATBOT -->
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-blue-500">
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500">
+                        <i class="fa-solid fa-comments text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">Chatbot</h2>
+                    <p class="text-xs font-mono text-blue-400 uppercase tracking-widest">Interfaccia & Dialogo</p>
+                    <p class="text-sm text-slate-400">Reattivo. Risponde a domande basandosi su dati statici o RAG. Non "fa" cose, parla di cose.</p>
+                    
+                    <div class="w-full space-y-2 pt-4">
+                        <div class="text-[10px] text-left font-bold text-slate-500 uppercase">Tecnologie:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">ChatGPT</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">Claude</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">Gemini</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full p-4 bg-blue-500/5 rounded-xl border border-blue-500/10 mt-4">
+                        <h4 class="text-xs font-bold mb-1">Caso d'uso:</h4>
+                        <p class="text-xs text-slate-300 italic">"Riassumi questo PDF di 50 pagine."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 2: AGENTE -->
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-purple-500">
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center text-purple-500">
+                        <i class="fa-solid fa-robot text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">Agente</h2>
+                    <p class="text-xs font-mono text-purple-400 uppercase tracking-widest">Azione & Tool-Use</p>
+                    <p class="text-sm text-slate-400">Proattivo. Può usare strumenti (browser, terminale, API) per completare un task autonomamente.</p>
+                    
+                    <div class="w-full space-y-2 pt-4">
+                        <div class="text-[10px] text-left font-bold text-slate-500 uppercase">Tecnologie:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">OpenAI Operator</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">LangChain</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">Dify</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full p-4 bg-purple-500/5 rounded-xl border border-purple-500/10 mt-4">
+                        <h4 class="text-xs font-bold mb-1">Caso d'uso:</h4>
+                        <p class="text-xs text-slate-300 italic">"Cerca il volo più economico per Tokyo e prenota l'hotel."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEVEL 3: ORCHESTRAZIONE -->
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-emerald-500">
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center text-emerald-500">
+                        <i class="fa-solid fa-network-wired text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">Orchestrazione</h2>
+                    <p class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Sistemi & Flussi</p>
+                    <p class="text-sm text-slate-400">Gestisce "sciami" di agenti. Coordina flussi complessi, cicli di feedback e memoria condivisa tra più AI.</p>
+                    
+                    <div class="w-full space-y-2 pt-4">
+                        <div class="text-[10px] text-left font-bold text-slate-500 uppercase">Tecnologie:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">LangGraph</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">CrewAI</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px]">n8n</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full p-4 bg-emerald-500/5 rounded-xl border border-emerald-500/10 mt-4">
+                        <h4 class="text-xs font-bold mb-1">Caso d'uso:</h4>
+                        <p class="text-xs text-slate-300 italic">"Crea un'intera campagna marketing: ricerca trend, scrivi post, crea immagini e pubblica."</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- METRICS SECTION -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <div class="glass-card p-8 rounded-3xl">
+                <h3 class="text-xl font-bold mb-6">Autonomia vs Complessità</h3>
+                <div class="chart-container">
+                    <canvas id="evolutionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl flex flex-col justify-center space-y-6">
+                <h3 class="text-xl font-bold">Perché passare all'Orchestrazione?</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <p class="text-sm text-slate-300">Evita le "allucinazioni" grazie al cross-checking tra agenti.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <p class="text-sm text-slate-300">Gestisce task a lungo termine che durano ore o giorni.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <p class="text-sm text-slate-300">Integra perfettamente dati Edge (IoT) e potenza Cloud.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="mt-12 text-center text-slate-600 text-xs">
+        <p>Analisi Tecnica Evoluzione IA 2026 • Aggiornato: Gennaio 2026</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('evolutionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Chatbot',
+                        data: [{x: 20, y: 20}],
+                        backgroundColor: '#3b82f6',
+                        pointRadius: 12
+                    },
+                    {
+                        label: 'Agente',
+                        data: [{x: 60, y: 55}],
+                        backgroundColor: '#a855f7',
+                        pointRadius: 18
+                    },
+                    {
+                        label: 'Orchestrazione',
+                        data: [{x: 95, y: 90}],
+                        backgroundColor: '#10b981',
+                        pointRadius: 24
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        min: 0, max: 100,
+                        title: { display: true, text: 'Autonomia Decisionale (%)', color: '#94a3b8' },
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { display: false }
+                    },
+                    y: {
+                        min: 0, max: 100,
+                        title: { display: true, text: 'Complessità del Task', color: '#94a3b8' },
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#f1f5f9' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

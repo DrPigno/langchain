@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trends Evolution 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --accent: #6366f1;
+            --secondary: #10b981;
+            --trend-1: #3b82f6;
+            --trend-2: #8b5cf6;
+            --trend-3: #f43f5e;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #f3f4f6;
+        }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
+        .trend-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .trend-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .connector {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <main class="max-w-6xl mx-auto">
+        <!-- HEADER -->
+        <header class="text-center mb-16">
+            <div class="inline-block px-4 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs font-bold uppercase mb-4">
+                Update: 19 Gennaio 2026
+            </div>
+            <h1 class="text-4xl md:text-6xl font-display font-bold mb-6">L'Era della <span class="text-indigo-500">Super-Orchestrazione</span></h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                Dal prompt engineering alla gestione di sciami di agenti autonomi. Ecco come l'IA sta riscrivendo l'automazione industriale e digitale.
+            </p>
+        </header>
+
+        <!-- EVOLUTION TIMELINE -->
+        <section class="space-y-4 mb-20">
+            <h2 class="text-2xl font-display font-bold mb-10 flex items-center gap-3">
+                <i class="fa-solid fa-timeline text-indigo-500"></i> Evoluzione dei Trend
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+                <!-- Fase 1 -->
+                <div class="trend-card p-6 rounded-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl"><i class="fa-solid fa-comment"></i></div>
+                    <span class="text-blue-400 text-xs font-mono">2023 - 2024</span>
+                    <h3 class="text-xl font-bold mt-2 mb-4">Chatbot & RAG</h3>
+                    <p class="text-sm text-slate-400 mb-4">Focus sulla ricerca semantica e risposte basate su documenti aziendali.</p>
+                    <div class="bg-blue-500/20 text-blue-400 text-[10px] p-2 rounded-lg font-mono">
+                        ESEMPIO: GPT-4 + Vector DB
+                    </div>
+                </div>
+
+                <!-- Fase 2 -->
+                <div class="trend-card p-6 rounded-2xl relative overflow-hidden border-indigo-500/30">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl"><i class="fa-solid fa-robot"></i></div>
+                    <span class="text-indigo-400 text-xs font-mono">2024 - 2025</span>
+                    <h3 class="text-xl font-bold mt-2 mb-4">AI Agentica</h3>
+                    <p class="text-sm text-slate-400 mb-4">Agenti capaci di usare "Tools" (browser, python, API) per risolvere task in autonomia.</p>
+                    <div class="bg-indigo-500/20 text-indigo-400 text-[10px] p-2 rounded-lg font-mono">
+                        ESEMPIO: CrewAI / AutoGen / OpenAI Operator
+                    </div>
+                </div>
+
+                <!-- Fase 3 -->
+                <div class="trend-card p-6 rounded-2xl relative overflow-hidden border-emerald-500/30 bg-emerald-500/5">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl"><i class="fa-solid fa-network-wired"></i></div>
+                    <span class="text-emerald-400 text-xs font-mono">2026 (OGGI)</span>
+                    <h3 class="text-xl font-bold mt-2 mb-4">Orchestrazione & Edge</h3>
+                    <p class="text-sm text-slate-400 mb-4">Sistemi di agenti multi-livello che operano tra Cloud e Edge in tempo reale.</p>
+                    <div class="bg-emerald-500/20 text-emerald-400 text-[10px] p-2 rounded-lg font-mono">
+                        ESEMPIO: LangGraph Cloud / Agentic OS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USE CASES GRID -->
+        <section class="mb-20">
+            <h2 class="text-2xl font-display font-bold mb-10">Casi d'Uso Dominanti nel 2026</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Case 1: Industrial Edge -->
+                <div class="trend-card p-8 rounded-3xl flex gap-6 items-start">
+                    <div class="w-14 h-14 bg-rose-500/10 rounded-2xl flex-shrink-0 flex items-center justify-center text-rose-500">
+                        <i class="fa-solid fa-industry text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Manutenzione Predittiva Autonoma</h4>
+                        <p class="text-sm text-slate-400 mb-4">Un micro-agente locale (TinyML) rileva una vibrazione anomala e attiva un agente orchestratore che ordina il pezzo di ricambio e pianifica l'intervento tecnico.</p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">RASPBERRY PI 5</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">MQTT</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">LLAMA-3.3-Q4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case 2: Business Ops -->
+                <div class="trend-card p-8 rounded-3xl flex gap-6 items-start">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex-shrink-0 flex items-center justify-center text-blue-500">
+                        <i class="fa-solid fa-briefcase text-2xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Social Media "Shadow" Team</h4>
+                        <p class="text-sm text-slate-400 mb-4">Uno sciame di agenti (CrewAI) monitora i trend su X/TikTok, genera contenuti multimediali, risponde ai commenti e ottimizza le campagne ads senza intervento umano.</p>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">ORCHESTRAZIONE</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">DIFY.AI</span>
+                            <span class="px-2 py-1 bg-slate-800 rounded text-[10px] font-bold">MULTI-MODAL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TREND METRICS CHART -->
+        <section class="trend-card p-8 rounded-[2rem]">
+            <h3 class="text-2xl font-display font-bold mb-8 text-center">Focus degli Investimenti AI (Q1 2026)</h3>
+            <div class="h-[300px]">
+                <canvas id="trendsChart"></canvas>
+            </div>
+            <p class="text-center text-xs text-slate-500 mt-6 italic">Fonte: Aggregazione dati Market Intelligence Gennaio 2026</p>
+        </section>
+
+    </main>
+
+    <script>
+        const ctx = document.getElementById('trendsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Agentic Workflows', 'TinyML / Edge AI', 'Multi-Modal Reasoning', 'AI Governance', 'Human-in-the-loop'],
+                datasets: [{
+                    label: '% Incremento Budget Aziendale',
+                    data: [85, 72, 64, 45, 30],
+                    backgroundColor: [
+                        'rgba(99, 102, 241, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(59, 130, 246, 0.7)',
+                        'rgba(244, 63, 94, 0.7)',
+                        'rgba(245, 158, 11, 0.7)'
+                    ],
+                    borderRadius: 10,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', font: { size: 10 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

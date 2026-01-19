@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novabase Training: Modulo 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #F59E0B;
+            --bg-dark: #020617;
+            --card-bg: #0F172A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling, handle via slides */
+        }
+
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            padding: 4rem;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 0% 0%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .accent-border {
+            border-left: 6px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+        }
+
+        .nav-btn {
+            position: fixed;
+            bottom: 2rem;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            z-index: 100;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress" class="progress-bar" style="width: 16.6%;"></div>
+
+    <!-- Controlli -->
+    <button onclick="prevSlide()" class="nav-btn" style="left: 2rem;"><i class="fas fa-chevron-left mr-2"></i>PREC</button>
+    <button onclick="nextSlide()" class="nav-btn" style="right: 2rem;">SUCC<i class="fas fa-chevron-right ml-2"></i></button>
+
+    <!-- Slide 1: Copertina -->
+    <div class="slide active" id="slide-1">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-7xl md:text-8xl font-black mb-8 leading-tight">Perché <span class="text-amber-500">LangGraph</span> ?</h1>
+            <p class="text-2xl text-slate-400 font-light max-w-3xl mx-auto mb-12 italic">
+                La potenza dell'orchestrazione IA applicata all'IoT e all'integrazione hardware.
+            </p>
+            <div class="flex justify-center gap-6">
+                <i class="fas fa-microchip text-4xl text-slate-700"></i>
+                <i class="fas fa-network-wired text-4xl text-slate-700"></i>
+                <i class="fas fa-brain text-4xl text-slate-700"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Low Latency & Edge -->
+    <div class="slide" id="slide-2">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-5xl font-extrabold mb-8 accent-border">01. Bassa Latenza & Edge</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-amber-500/10 p-3 rounded-lg"><i class="fas fa-bolt text-amber-500 text-xl"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Esecuzione Locale</h3>
+                            <p class="text-slate-400">LangGraph gira su Python nativo. Può essere ospitato su Gateway Edge vicino ai macchinari.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-amber-500/10 p-3 rounded-lg"><i class="fas fa-wifi-slash text-amber-500 text-xl"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Offline Capability</h3>
+                            <p class="text-slate-400">L'orchestrazione non dipende dal cloud. Se la connessione cade, la logica di controllo rimane attiva.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-8 flex flex-col items-center justify-center min-h-[400px]">
+                <div class="relative w-full h-64 bg-slate-900/50 rounded-xl border border-slate-800 flex items-center justify-center overflow-hidden">
+                    <!-- Illustrazione SVG Edge -->
+                    <svg viewBox="0 0 400 200" class="w-full">
+                        <rect x="50" y="70" width="80" height="60" rx="8" fill="#1e293b" stroke="#F59E0B" stroke-width="2" />
+                        <text x="65" y="105" fill="#F59E0B" font-size="12" font-weight="bold">GATEWAY</text>
+                        <path d="M130 100 L270 100" stroke="#334155" stroke-dasharray="5,5" />
+                        <circle cx="320" cy="100" r="40" fill="#0f172a" stroke="#334155" />
+                        <text x="305" y="105" fill="#334155" font-size="10">CLOUD</text>
+                        <circle cx="90" cy="100" r="5" class="pulse-icon" fill="#F59E0B" />
+                    </svg>
+                    <div class="absolute bottom-4 text-xs text-amber-500/50 uppercase tracking-widest font-bold">Integrazione Diretta via Seriale/gRPC</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Human-in-the-Loop -->
+    <div class="slide" id="slide-3">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-extrabold mb-12 text-center">02. Human-in-the-Loop (Safety)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 text-center">
+                    <div class="text-4xl mb-6"><i class="fas fa-hand-paper text-red-500"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Breakpoints</h3>
+                    <p class="text-slate-400">Interruzione del grafo prima di comandi critici all'hardware.</p>
+                </div>
+                <div class="glass-card p-10 text-center scale-105 border-amber-500/50">
+                    <div class="text-4xl mb-6"><i class="fas fa-user-shield text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Approvazione</h3>
+                    <p class="text-slate-400">L'IA propone un valore (es. Voltaggio), l'operatore Novabase valida.</p>
+                </div>
+                <div class="glass-card p-10 text-center">
+                    <div class="text-4xl mb-6"><i class="fas fa-edit text-blue-500"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Override</h3>
+                    <p class="text-slate-400">Modifica dello stato dell'agente "al volo" per correggere traiettorie.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Persistenza & Checkpointing -->
+    <div class="slide" id="slide-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+            <div class="flex-1 order-2 md:order-1">
+                <div class="relative bg-slate-900 p-8 rounded-3xl border border-slate-800 custom-shadow">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    </div>
+                    <div class="font-mono text-amber-500 text-sm space-y-2">
+                        <p>> thread_id = "ESP32_01"</p>
+                        <p>> config = {"configurable": {"thread_id": "01"}}</p>
+                        <p class="text-slate-500"># Salvataggio stato su DB...</p>
+                        <p>> graph.get_state(config)</p>
+                        <p class="text-emerald-500 font-bold">>> State: SUCCESS [Sensor Data Persisted]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 order-1 md:order-2">
+                <h2 class="text-5xl font-extrabold mb-8 accent-border">03. Resilienza Totale</h2>
+                <h3 class="text-2xl font-bold text-amber-500 mb-4">Checkpointing</h3>
+                <p class="text-xl text-slate-400 mb-8">
+                    In caso di reboot del microcontrollore o perdita di alimentazione, LangGraph riprende esattamente dall'ultimo nodo del grafo salvato.
+                </p>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex items-center gap-3 text-slate-300">
+                        <i class="fas fa-history text-amber-500"></i> Time-Travel (Ritorno a stati precedenti)
+                    </li>
+                    <li class="flex items-center gap-3 text-slate-300">
+                        <i class="fas fa-database text-amber-500"></i> Supporto Nativo Postgres / Redis
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Ciclicità Industriale -->
+    <div class="slide" id="slide-5">
+        <div class="max-w-5xl mx-auto text-center">
+            <h2 class="text-5xl font-extrabold mb-12">Ciclicità vs Linearità</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="p-8 border border-slate-800 rounded-2xl bg-slate-900/30">
+                    <h4 class="text-slate-500 uppercase tracking-widest text-sm mb-6">Sistemi Tradizionali</h4>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="p-4 bg-slate-800 rounded">Input</div>
+                        <i class="fas fa-arrow-right"></i>
+                        <div class="p-4 bg-slate-800 rounded">IA</div>
+                        <i class="fas fa-arrow-right"></i>
+                        <div class="p-4 bg-slate-800 rounded">Output</div>
+                    </div>
+                    <p class="mt-8 text-red-400/70 text-sm">Fallisce se l'hardware non risponde correttamente.</p>
+                </div>
+                <div class="p-8 border border-amber-500/20 rounded-2xl bg-amber-500/5">
+                    <h4 class="text-amber-500 uppercase tracking-widest text-sm mb-6">LangGraph (Novabase Way)</h4>
+                    <div class="relative flex items-center justify-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-dashed border-amber-500 flex items-center justify-center animate-[spin_10s_linear_infinite]">
+                            <i class="fas fa-sync text-amber-500"></i>
+                        </div>
+                        <div class="absolute text-xs font-bold bg-amber-500 text-black px-2 py-1 rounded">SELF-CORRECTION</div>
+                    </div>
+                    <p class="mt-8 text-amber-400 text-sm">Riprova, corregge i parametri o cambia strategia se il sensore dà errore.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 5;
+
+        function updateProgress() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(s => s.classList.remove('active'));
+            document.getElementById('slide-' + n).classList.add('active');
+            currentSlide = n;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Supporto Tastiera
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>

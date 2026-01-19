@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern di Orchestrazione Agenti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #020617;
+            font-family: 'Inter', sans-serif;
+            color: #f8fafc;
+        }
+        h1, h2, h3 { font-family: 'Urbanist', sans-serif; }
+        .pattern-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .pattern-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        .node {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        .node-llm { background: #1e40af; border: 1px solid #3b82f6; }
+        .node-tool { background: #065f46; border: 1px solid #10b981; }
+        .node-router { background: #92400e; border: 1px solid #f59e0b; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-16 text-center">
+            <h1 class="text-5xl font-extrabold mb-4 text-white">Pattern di Orchestrazione <span class="text-blue-500">Multi-Agente</span></h1>
+            <p class="text-slate-400 text-xl max-w-3xl mx-auto">Dalla semplice esecuzione di tool alla collaborazione complessa tra esperti verticali.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- Pattern 1: ReAct (Reason + Act) -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-blue-500/10 p-3 rounded-lg"><i class="fas fa-sync-alt text-blue-500"></i></div>
+                    <h2 class="text-2xl font-bold">1. ReAct Agent</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">Il pattern base. L'agente "pensa" (Reason) e poi "agisce" (Act) in un loop continuo finché non risolve il task.</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6">
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="node node-llm w-40">LLM (Reasoning)</div>
+                        <i class="fas fa-arrow-down text-slate-600"></i>
+                        <div class="node node-tool w-40">Tool Execution</div>
+                        <i class="fas fa-redo text-slate-600"></i>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Task semplici, calcolatrici, lookup di documentazione tecnica.
+                </div>
+            </div>
+
+            <!-- Pattern 2: Supervisor -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-amber-500/10 p-3 rounded-lg"><i class="fas fa-user-tie text-amber-500"></i></div>
+                    <h2 class="text-2xl font-bold">2. Supervisor Pattern</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">Un agente "Manager" riceve l'input e delega il lavoro ad agenti specializzati, raccogliendo poi i risultati.</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6">
+                    <div class="flex flex-col items-center gap-3">
+                        <div class="node node-router w-40">Supervisor</div>
+                        <div class="flex gap-2">
+                            <div class="node node-llm text-[10px] w-20">Worker A</div>
+                            <div class="node node-llm text-[10px] w-20">Worker B</div>
+                            <div class="node node-llm text-[10px] w-20">Worker C</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Sistemi complessi dove diverse competenze non devono sovrapporsi.
+                </div>
+            </div>
+
+            <!-- Pattern 3: Sequential / Chain -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-emerald-500/10 p-3 rounded-lg"><i class="fas fa-link text-emerald-500"></i></div>
+                    <h2 class="text-2xl font-bold">3. Sequential Chain</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">L'output di un agente diventa l'input del successivo. Ideale per pipeline di trasformazione dati lineari.</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6">
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="node node-llm">Analisi</div>
+                        <i class="fas fa-chevron-right text-slate-600"></i>
+                        <div class="node node-llm">Codifica</div>
+                        <i class="fas fa-chevron-right text-slate-600"></i>
+                        <div class="node node-llm">Test</div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Generazione di report, pipeline di traduzione e revisione.
+                </div>
+            </div>
+
+            <!-- Pattern 4: Hierarchical (Team of Teams) -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-purple-500/10 p-3 rounded-lg"><i class="fas fa-sitemap text-purple-500"></i></div>
+                    <h2 class="text-2xl font-bold">4. Hierarchical Teams</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">Aggregazione di diversi Supervisor. Ogni team gestisce un macro-settore (es. Team Hardware vs Team Software).</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6">
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="node node-router w-32">Director</div>
+                        <div class="flex gap-4">
+                            <div class="border border-slate-700 p-2 rounded flex flex-col items-center">
+                                <span class="text-[8px] text-slate-500 mb-1">Team IoT</span>
+                                <div class="node node-llm text-[8px] p-1">Sup. A</div>
+                            </div>
+                            <div class="border border-slate-700 p-2 rounded flex flex-col items-center">
+                                <span class="text-[8px] text-slate-500 mb-1">Team ERP</span>
+                                <div class="node node-llm text-[8px] p-1">Sup. B</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Enterprise RAG su scala massiva con permessi differenti.
+                </div>
+            </div>
+
+            <!-- Pattern 5: Plan-and-Execute -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-pink-500/10 p-3 rounded-lg"><i class="fas fa-clipboard-list text-pink-500"></i></div>
+                    <h2 class="text-2xl font-bold">5. Plan-and-Execute</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">Un agente pianifica una lista di step. Un secondo agente li esegue uno ad uno. Riduce le allucinazioni in task lunghi.</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6">
+                    <div class="flex justify-around items-center">
+                        <div class="node node-router">Planner</div>
+                        <div class="h-10 w-px bg-slate-700"></div>
+                        <div class="node node-tool">Executor</div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Ricerche di mercato approfondite, analisi di codice legacy esteso.
+                </div>
+            </div>
+
+            <!-- Pattern 6: Multi-Player Debate -->
+            <div class="pattern-card p-8 rounded-2xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="bg-indigo-500/10 p-3 rounded-lg"><i class="fas fa-comments text-indigo-500"></i></div>
+                    <h2 class="text-2xl font-bold">6. Multi-Player Debate</h2>
+                </div>
+                <p class="text-slate-400 mb-6 text-sm">Due agenti con "personalità" o "obiettivi" diversi discutono per arrivare a una soluzione migliore e verificata.</p>
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 mb-6 text-center">
+                    <div class="flex justify-center gap-4">
+                        <div class="node node-llm">Proponente</div>
+                        <div class="node node-llm bg-red-900 border-red-500">Critico</div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500">
+                    <strong>Ideale per:</strong> Security auditing, ottimizzazione algoritmi ML, fact-checking.
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-16 pt-8 border-t border-slate-800 flex justify-between text-slate-500 text-sm">
+            <span>© 2026 Novabase Architecture Design</span>
+            <span>Framework: LangGraph / CrewAI</span>
+        </footer>
+    </div>
+</body>
+</html>

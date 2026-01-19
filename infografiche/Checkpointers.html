@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LangGraph 2026: create_agent & State History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #020617;
+            color: #e2e8f0;
+        }
+
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .code-block {
+            font-family: 'Fira Code', monospace;
+            background-color: #000000;
+            border-left: 4px solid #38bdf8;
+        }
+
+        .nav-item {
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            border-bottom: 2px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .keyword { color: #f472b6; }
+        .function { color: #38bdf8; }
+        .string { color: #4ade80; }
+        .comment { color: #64748b; font-style: italic; }
+        .const { color: #fbbf24; }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-500 bg-clip-text text-transparent">
+                LANGGRAPH 2026
+            </h1>
+            <p class="text-slate-400 text-lg">
+                Sviluppo Agenti con <code class="text-cyan-400">create_agent</code>, Resume e State History
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex flex-wrap justify-center gap-6 mb-8 border-b border-slate-800">
+            <button onclick="showSection('creation')" id="btn-creation" class="nav-item active pb-3 font-semibold">Creazione Agente</button>
+            <button onclick="showSection('resume')" id="btn-resume" class="nav-item pb-3 font-semibold">Resume Strutturato</button>
+            <button onclick="showSection('history')" id="btn-history" class="nav-item pb-3 font-semibold text-pink-400"><i class="fas fa-history mr-1"></i> State History</button>
+            <button onclick="showSection('persistence')" id="btn-persistence" class="nav-item pb-3 font-semibold">Time Travel</button>
+        </div>
+
+        <!-- Main Content -->
+        <div id="content" class="glass-panel rounded-3xl p-8 min-h-[500px]">
+            <!-- Content Injected Here -->
+        </div>
+
+        <!-- Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-blue-500">
+                <h3 class="text-blue-400 font-bold mb-2"><i class="fas fa-bolt mr-2"></i>Create Agent</h3>
+                <p class="text-sm text-slate-400">Astrazione di alto livello che sostituisce la compilazione manuale dei grafi per pattern standard.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-pink-500">
+                <h3 class="text-pink-400 font-bold mb-2"><i class="fas fa-clock mr-2"></i>State History</h3>
+                <p class="text-sm text-slate-400">Accedi a ogni istante della vita dell'agente per scopi di debug, auditing o rollback.</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-l-4 border-green-500">
+                <h3 class="text-green-400 font-bold mb-2"><i class="fas fa-hand-holding-heart mr-2"></i>Command Pattern</h3>
+                <p class="text-sm text-slate-400">Iniezione di decisioni umane tramite <code>resume</code> per un controllo granulare sulle azioni.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = {
+            creation: {
+                title: "Inizializzazione Moderna (2026)",
+                description: "Dimentica la costruzione manuale del grafo. Con <code>create_agent</code>, definiamo tool, prompt e persistenza in un unico passaggio, ottenendo un'istanza pronta per il controllo granulare.",
+                code: `<span class="keyword">from</span> langgraph.prebuilt <span class="keyword">import</span> create_agent<br><span class="keyword">from</span> langgraph.checkpoint.memory <span class="keyword">import</span> MemorySaver<br><br><span class="comment"># Persistenza totale via MemorySaver</span><br>checkpointer = MemorySaver()<br><br><span class="comment"># Creazione agente con Human-in-the-loop integrato</span><br>agent = <span class="function">create_agent</span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;model,<br>&nbsp;&nbsp;&nbsp;&nbsp;tools=my_tools,<br>&nbsp;&nbsp;&nbsp;&nbsp;checkpointer=checkpointer,<br>&nbsp;&nbsp;&nbsp;&nbsp;interrupt_before=[<span class="string">"tools"</span>] <span class="comment"># Pausa automatica</span><br>)`
+            },
+            resume: {
+                title: "Resume Strutturato con Command",
+                description: "Quando l'agente si interrompe, richiede una decisione specifica. Il nuovo pattern <code>resume</code> permette di passare un dizionario di decisioni che mappano esattamente le azioni in attesa.",
+                code: `<span class="keyword">from</span> langgraph.types <span class="keyword">import</span> Command<br><br><span class="comment"># Ripresa dell'esecuzione con approvazione esplicita</span><br>agent.<span class="function">invoke</span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="function">Command</span>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resume={<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"decisions"</span>: [<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<span class="string">"type"</span>: <span class="string">"approve"</span>}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;),<br>&nbsp;&nbsp;&nbsp;&nbsp;config=config <span class="comment"># Stesso thread_id</span><br>)`
+            },
+            history: {
+                title: "Esplorazione Storica: get_state_history",
+                description: "Ogni passo dell'agente viene salvato come uno 'snapshot'. Usando <code>get_state_history</code>, puoi iterare attraverso tutti i momenti passati per analizzare come lo stato è cambiato o identificare il punto esatto di un errore.",
+                code: `<span class="comment"># Recupera tutti i checkpoint salvati per il thread corrente</span><br>history = list(agent.<span class="function">get_state_history</span>(config))<br><br><span class="keyword">for</span> state <span class="keyword">in</span> history:<br>&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">f"Node: {state.next}"</span>) <span class="comment"># Prossimo nodo da eseguire</span><br>&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">f"Checkpoint ID: {state.config['configurable']['checkpoint_id']}"</span>)<br>&nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">"---"</span>)<br><br><span class="comment"># Puoi anche limitare i risultati</span><br>last_two = list(agent.<span class="function">get_state_history</span>(config, limit=<span class="const">2</span>))`
+            },
+            persistence: {
+                title: "Time Travel & Forking",
+                description: "Una volta individuato un punto nella storia tramite <code>history</code>, puoi caricare quello stato specifico o usarlo come base per un nuovo fork dell'esecuzione.",
+                code: `<span class="comment"># Recupera un momento specifico dalla storia</span><br>past_checkpoint = history[<span class="const">5</span>].config<br><br><span class="comment"># Ripartenza da un punto passato (Rollback)</span><br>agent.<span class="function">invoke</span>(<span class="const">None</span>, config=past_checkpoint)<br><br><span class="comment"># Oppure modifica lo stato e riparti</span><br>agent.<span class="function">update_state</span>(past_checkpoint, {<span class="string">"messages"</span>: [...]})`
+            }
+        };
+
+        function showSection(id) {
+            const section = sections[id];
+            const content = document.getElementById('content');
+            
+            // UI Update
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + id).classList.add('active');
+
+            content.innerHTML = `
+                <div class="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h2 class="text-3xl font-bold text-white">${section.title}</h2>
+                    </div>
+                    <p class="text-slate-300 mb-8 leading-relaxed">${section.description}</p>
+                    <div class="code-block p-6 rounded-xl overflow-x-auto text-sm leading-relaxed">
+                        <pre><code>${section.code}</code></pre>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize
+        window.onload = () => showSection('creation');
+    </script>
+
+</body>
+</html>
