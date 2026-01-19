@@ -60,3 +60,9 @@ data/faiss_index/
 *.pkl
 *.bin
 models/
+
+# LangGraph API cache e runtime
+.langgraph_api/
+*.langgraph_checkpoint.*.pckl
+*.langgraph_ops.pckl
+*.langgraph_retry_counter.pckl
