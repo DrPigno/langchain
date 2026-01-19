@@ -64,9 +64,8 @@ Oppure usa VS Code con l'estensione Jupyter!
 .
 ├── lezioni/          # Notebook delle lezioni principali
 ├── esercizi/         # Esercizi pratici da completare
-├── soluzioni/        # Soluzioni degli esercizi
 ├── data/             # Dati di esempio
-├── utils/            # Funzioni helper
+├── infografiche/     # Infografiche html
 ├── pyproject.toml    # Configurazione del progetto e dipendenze
 └── .env.example      # Template per le variabili d'ambiente
 ```
