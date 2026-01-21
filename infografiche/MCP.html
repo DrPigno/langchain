@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocollo MCP 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap');
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background: #050505;
+            color: #e2e8f0;
+        }
+
+        .mcp-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        }
+
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+
+        .mcp-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .mcp-card:hover {
+            border-color: #6366f1;
+            background: rgba(15, 23, 42, 0.8);
+            transform: scale(1.02);
+        }
+
+        .arrow-flow {
+            position: relative;
+        }
+        
+        .arrow-flow::after {
+            content: '↔';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: #6366f1;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .arrow-flow::after { content: '↕'; right: auto; left: 50%; bottom: -25px; top: auto; transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-10">
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <h1 class="text-6xl font-extrabold mb-4 tracking-tight">Model Context Protocol</h1>
+            <p class="text-transparent bg-clip-text mcp-gradient text-2xl font-bold uppercase tracking-widest">Lo Standard Universale 2026</p>
+            <div class="mt-6 inline-block bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-slate-400">
+                Sostituisce le integrazioni custom con un'unica interfaccia client-server
+            </div>
+        </div>
+
+        <!-- Architettura Principale -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-20">
+            
+            <!-- CLIENT -->
+            <div class="mcp-card p-8 rounded-3xl arrow-flow">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-robot text-indigo-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">Host / Client</h2>
+                </div>
+                <p class="text-slate-400 text-sm mb-4 italic">Esempi: Claude Desktop, IDE, Agent Frameworks.</p>
+                <ul class="space-y-3 text-sm">
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Gestisce l'autenticazione</li>
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Esegue l'orchestrazione</li>
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Fornisce l'interfaccia utente</li>
+                </ul>
+            </div>
+
+            <!-- PROTOCOLLO -->
+            <div class="flex flex-col justify-center items-center text-center p-4">
+                <div class="w-full h-1 mcp-gradient rounded-full mb-4"></div>
+                <div class="code-font text-xs bg-indigo-500/10 p-3 rounded border border-indigo-500/20">
+                    JSON-RPC 2.0 OVER SSE/STDIO
+                </div>
+                <div class="text-xs text-slate-500 mt-4 uppercase font-bold tracking-tighter italic">Scambio di messaggi bidirezionale</div>
+            </div>
+
+            <!-- SERVER -->
+            <div class="mcp-card p-8 rounded-3xl">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center">
+                        <i class="fa-solid fa-server text-pink-400 text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold">MCP Server</h2>
+                </div>
+                <p class="text-slate-400 text-sm mb-4 italic">Esempi: GitHub Server, DB Server, Local Files.</p>
+                <ul class="space-y-3 text-sm">
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Espone dati e funzioni</li>
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Esegue la logica lato tool</li>
+                    <li class="p-3 bg-white/5 rounded-lg border border-white/5">Isola l'accesso ai dati sensibili</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- I Tre Pilastri -->
+        <h3 class="text-3xl font-bold mb-10 text-center">Cosa offre un Server MCP?</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- TOOLS -->
+            <div class="p-6 bg-gradient-to-b from-indigo-500/10 to-transparent border-t-2 border-indigo-500 rounded-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fa-solid fa-screwdriver-wrench text-indigo-400"></i>
+                    <h4 class="text-xl font-bold">Tools</h4>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">Funzioni eseguibili che l'LLM può invocare (Write access).</p>
+                <div class="code-font text-[10px] bg-black/40 p-3 rounded text-indigo-300">
+                    list_tools() <br>
+                    call_tool("create_jira_issue")
+                </div>
+            </div>
+
+            <!-- RESOURCES -->
+            <div class="p-6 bg-gradient-to-b from-purple-500/10 to-transparent border-t-2 border-purple-500 rounded-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fa-solid fa-box-archive text-purple-400"></i>
+                    <h4 class="text-xl font-bold">Resources</h4>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">Dati statici o dinamici leggibili (Read access).</p>
+                <div class="code-font text-[10px] bg-black/40 p-3 rounded text-purple-300">
+                    list_resources() <br>
+                    read_resource("mcp://db/logs")
+                </div>
+            </div>
+
+            <!-- PROMPTS -->
+            <div class="p-6 bg-gradient-to-b from-pink-500/10 to-transparent border-t-2 border-pink-500 rounded-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fa-solid fa-comment-dots text-pink-400"></i>
+                    <h4 class="text-xl font-bold">Prompts</h4>
+                </div>
+                <p class="text-sm text-slate-400 mb-4">Template predefiniti per istruire l'LLM su task specifici.</p>
+                <div class="code-font text-[10px] bg-black/40 p-3 rounded text-pink-300">
+                    get_prompt("analyze_log") <br>
+                    -> returns system instructions
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Come usarlo -->
+        <div class="mt-20 p-8 border border-white/10 rounded-3xl bg-white/[0.02]">
+            <h3 class="text-2xl font-bold mb-6 text-center">Flusso di Lavoro 2026</h3>
+            <div class="flex flex-col md:flex-row justify-between gap-4">
+                <div class="flex-1 text-center">
+                    <span class="text-3xl font-bold text-indigo-500">01</span>
+                    <h5 class="font-bold mt-2">Configurazione</h5>
+                    <p class="text-xs text-slate-500">Aggiungi l'URL del server o il comando nel file config dell'host.</p>
+                </div>
+                <div class="hidden md:block self-center"><i class="fa-solid fa-chevron-right text-slate-700"></i></div>
+                <div class="flex-1 text-center">
+                    <span class="text-3xl font-bold text-purple-500">02</span>
+                    <h5 class="font-bold mt-2">Discovery</h5>
+                    <p class="text-xs text-slate-500">L'LLM interroga il server per sapere quali tools e risorse sono disponibili.</p>
+                </div>
+                <div class="hidden md:block self-center"><i class="fa-solid fa-chevron-right text-slate-700"></i></div>
+                <div class="flex-1 text-center">
+                    <span class="text-3xl font-bold text-pink-500">03</span>
+                    <h5 class="font-bold mt-2">Execution</h5>
+                    <p class="text-xs text-slate-500">L'utente chiede un task; l'AI seleziona ed esegue il tool tramite MCP.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-12 text-center text-slate-600 text-xs">
+            © 2026 Model Context Protocol Standard • Open Integration Ecosystem
+        </footer>
+    </div>
+
+</body>
+</html>
