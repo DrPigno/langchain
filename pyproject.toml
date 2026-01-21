@@ -21,6 +21,7 @@ dependencies = [
     "langchain-text-splitters>=1.1.0",
     "langgraph-cli>=0.4.11",
     "langgraph-api>=0.7.0",
+    "langchain-tavily>=0.2.17",
     "langchain-cerebras>=0.8.2",
     "langchain-mcp-adapters>=0.2.1",
     "langchain-huggingface>=1.2.0",
